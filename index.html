@@ -1,7 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
+	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name ="description" content ="Site web de Nina Carducci, photographe professionnelle">
+	<title>Nina Carducci - Photographe</title>
+	<!-- schema.org -->
+	<script type="application/ld+json">
+		{
+			<!-- "@context": "https://schema.org",
+			"@type": "Person", -->
+			"name": "Nina Carducci",
+			"jobTitle": "Photographe",
+			<!-- "image": "https://www.exemple.com/image-de-reference.jpg", -->
+			"telephone": "+33556677889",
+			"address": {
+				"@type": "PostalAddress",
+				"streetAddress": "68 Avenue Alsace-Lorraine",
+				"addressLocality": "BORDEAUX",
+				"postalCode": "33200",
+				"addressCountry": "FR"
+			},
+			"url": "https://www.exemple.com",
+			"openingHoursSpecification": {
+				"@type": "OpeningHoursSpecification",
+				"dayOfWeek": [
+					"Lundi",
+					"Mardi",
+					"Mercredi",
+					"Jeudi",
+					"Vendredi"
+				],
+				"opens": "10:00",
+				"closes": "19:00"
+			}
+		}
+		</script>
 	<link rel="stylesheet" href="./assets/bootstrap/bootstrap.css">
 	<link rel="stylesheet" href="./assets/style.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -63,8 +97,8 @@
 		<img src="./assets/images/nina.webp" alt = "Photo de la photographe Nina Carducci">
 	</div>
 	<div id="about-me">
-		<h3 class="about-me__title">A propos de moi</h3>
-		<h6 class="about-me__introduction">Devenir photographe était pour moi une évidence. Comme si j’y étais prédestinée. Saisir un moment, une émotion, une situation, un endroit, une lumière et les rendre immortels, voilà ce qui me fait vibrer.</h6>
+		<h2 class="about-me__title">A propos de moi</h2>
+		<span class="about-me__introduction">Devenir photographe était pour moi une évidence. Comme si j’y étais prédestinée. Saisir un moment, une émotion, une situation, un endroit, une lumière et les rendre immortels, voilà ce qui me fait vibrer.</span>
 		<p>Nous passons notre vie à chercher le bonheur, et lorsque nous y touchons, nous n’avons qu’une envie : le figer au travers de photographies pour le savourer avec les personnes qui sont importantes à nos yeux, ou le partager au plus grand nombre.
 			C’est ce que je vous propose : saisir ces merveilleux moments au travers de mon regard, mon approche, ma technique. Rendre ces moments immortels, afin que vous puissiez y puiser de l’amour, du bonheur, de la tendresse et de lumière à chaque fois que vous poserez les yeux sur vos photos.</p>
 	</div>
@@ -88,7 +122,7 @@
 	<div class="quote">
 		<figure>
 			<blockquote>
-				<h1 class="quote__text">Un portrait n’est pas une ressemblance. Dès lors qu’une émotion ou qu’un fait est traduit en photo, il cesse d’être un fait pour devenir une opinion. L’inexactitude n’existe pas en photographie. Toutes les photos sont exactes. Aucune d’elles n’est la vérité.</h1>
+				<span class="quote__text">Un portrait n’est pas une ressemblance. Dès lors qu’une émotion ou qu’un fait est traduit en photo, il cesse d’être un fait pour devenir une opinion. L’inexactitude n’existe pas en photographie. Toutes les photos sont exactes. Aucune d’elles n’est la vérité.</span>
 			</blockquote>
 			<figcaption class="quote__author">- Richard Avedon</figcaption>
 		</figure>
@@ -96,11 +130,11 @@
 </section>
 <!-- SECTION SERVICES -->
 <section id="services">
-	<h3 class="title">Mes services</h3>
+	<h4 class="title">Mes services</h4>
 	<div class="container">
 		<div class="service">
 			<div class="service__description">
-				<h3>Shooting photo</h3>
+				<h4>Shooting photo</h4>
 				<p>Pour capturer vos moments les plus précieux et garder un souvenir impérissable. Je me déplace en Île-de-France pour réaliser vos photos</p>
 			</div>
 			<div class="service__price">
@@ -110,7 +144,7 @@
 		</div>
 		<div class="service">
 			<div class="service__description">
-				<h3>Retouches</h3>
+				<h4>Retouches</h4>
 				<p>Vous souhaitez retoucher vos photos pour un résultat professionnel ? Bénéficier d’un rendu optimal pour vos publications</p>
 			</div>
 			<div class="service__price">
@@ -120,7 +154,7 @@
 		</div>
 		<div class="service">
 			<div class="service__description">
-				<h3>Album photos</h3>
+				<h4>Album photos</h4>
 				<p>Partagez avec vos proches et vos clients les photos des moments partagés ensemble à travers un album photo personnalisé</p>
 			</div>
 			<div class="service__price">
@@ -132,7 +166,7 @@
 <div class="quote">
 	<figure>
 		<blockquote>
-			<h1 class="quote__text">De manière inconsciente, je crois, je guette un regard, une expression, des traits ou une nostalgie capable de résumer ou plus exactement de révéler une vie</h1>
+			<span class="quote__text">De manière inconsciente, je crois, je guette un regard, une expression, des traits ou une nostalgie capable de résumer ou plus exactement de révéler une vie</span>
 		</blockquote>
 		<figcaption class="quote__author">- Richard Avedon</figcaption>
 	</figure>
@@ -142,16 +176,16 @@
 <section id="contact">
 	<div class="container">
 		<div class="form-container">
-			<h3>Une question ? Une demande de devis ?</h3>
+			<h5>Une question ? Une demande de devis ?</h5>
 			<p> N’hésitez pas à m’écrire ! Je vous répondrais en moins de 24 heures</p>
-			<form action="" method="post">
-				<label>Nom</label>
-				<input type="text" name="nom" id="nom">
-				<label>Email</label>
+			<form action="#" method="post">
+				<label for="name">Nom</label>
+				<input type="text" name="name" id="name">
+				<label for="email">Email</label>
 				<input type="email" name="email" id="email">
-				<label>Message</label>
+				<label for="message">Message</label>
 				<textarea name="message" id="message" cols="30" rows="10"></textarea>
-				<input type="submit" value="Envoyer"/>
+				<input type="submit" value="Envoyer">
 			</form>
 		</div>
 		<div class="picture right">
