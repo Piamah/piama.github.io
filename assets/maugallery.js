@@ -48,6 +48,7 @@
     tagsPosition: "bottom",
     navigation: true
   };
+  // Ecouteurs d'évent sur les filtres
   $.fn.mauGallery.listeners = function(options) {
     $(".gallery-item").on("click", function() {
       if (options.lightBox && $(this).prop("tagName") === "IMG") {
@@ -56,7 +57,7 @@
         return;
       }
     });
-
+    //Ecoute click sur les nav-link dans gallery puis filterByTag
     $(".gallery").on("click", ".nav-link", $.fn.mauGallery.methods.filterByTag);
     $(".gallery").on("click", ".mg-prev", () =>
       $.fn.mauGallery.methods.prevImage(options.lightboxId)
@@ -113,39 +114,50 @@
         element.addClass("img-fluid");
       }
     },
+    // ------------ BUG N°1 ------------ //
+
     openLightBox(element, lightboxId) {
       $(`#${lightboxId}`)
         .find(".lightboxImage")
         .attr("src", element.attr("src"));
       $(`#${lightboxId}`).modal("toggle");
     },
+
 // FONCTION DE L'IMAGE PRECEDENTE
     prevImage() {
+      // Récupération de l'url de l'image affichée
       let activeImage = $(".lightboxImage").attr("src");
+      // Créé un ensemble de toutes les images visibles 
       let imagesCollection = [];
+      // $ => queryselec // Récupération des images de la galerie et affichage dans imagesCollection
       $(".gallery-item:visible").each(function() {
         imagesCollection.push($(this).attr("src"));
       });
-    
+      // Trouve l'index de l'image active
       let currentIndex = imagesCollection.indexOf(activeImage);
+      // Trouve l'index de l'image précédente
       let prevIndex = (currentIndex - 1 + imagesCollection.length) % imagesCollection.length;
-    
+      // Change la source de l'image affichée grâce à l'URL de l'image previous
       $(".lightboxImage").attr("src", imagesCollection[prevIndex]);
     },
 // FONCTION DE L'IMAGE SUIVANTE
     nextImage() {
+      // Récupération de l'URL de l'image affichée
       let activeImage = $(".lightboxImage").attr("src");
       let imagesCollection = [];
+      // Créé un ensemble de toutes les images visibles
       $(".gallery-item:visible").each(function() {
         imagesCollection.push($(this).attr("src"));
       });
-    
+      // Trouve l'index de l'image active
       let currentIndex = imagesCollection.indexOf(activeImage);
+      // Trouve l'index de l'image suivante
       let nextIndex = (currentIndex + 1) % imagesCollection.length;
-    
+      // Change la source de l'image affichée grâce à l'URL de l'image next
       $(".lightboxImage").attr("src", imagesCollection[nextIndex]);
     },
 
+    // ------------ BUG N°2 ------------ //
     createLightBox(gallery, lightboxId, navigation) {
       gallery.append(`<div class="modal fade" id="${
         lightboxId ? lightboxId : "galleryLightbox"
@@ -155,12 +167,14 @@
                         <div class="modal-body">
                             ${
                               navigation
+                              // Bouton previous
                                 ? '<div class="mg-prev" style="cursor:pointer;position:absolute;top:50%;left:-15px;background:white;"><</div>'
                                 : '<span style="display:none;" />'
                             }
                             <img class="lightboxImage img-fluid" alt="Contenu de l'image affichée dans la modale au clique"/>
                             ${
                               navigation
+                              // Bouton next
                                 ? '<div class="mg-next" style="cursor:pointer;position:absolute;top:50%;right:-15px;background:white;}">></div>'
                                 : '<span style="display:none;" />'
                             }
@@ -171,8 +185,10 @@
     },
     showItemTags(gallery, position, tags) {
       var tagItems =
+      // réation du bouton tous actif par défaut
         '<li class="nav-item"><span class="nav-link active active-tag"  data-images-toggle="all">Tous</span></li>';
-      $.each(tags, function(index, value) {
+      // Créé des bouton pour tous les filtres
+        $.each(tags, function(index, value) {
         tagItems += `<li class="nav-item active">
                 <span class="nav-link"  data-images-toggle="${value}">${value}</span></li>`;
       });
@@ -186,23 +202,29 @@
         console.error(`Unknown tags position: ${position}`);
       }
     },
+    // Processus de changement de la couleur du bouton
     filterByTag() {
+      // Est-ce que le bouton sur lequel on clique est déjà actif ? Si oui, on fait rien
       if ($(this).hasClass("active-tag")) {
         return;
       }
-      // Retirer la classe active des autres boutons
+      // Retire les styles de tous les autres boutons
       $(".tags-bar .nav-link").removeClass("active active-tag");
-      // Ajouter la classe active au bouton cliqué
+      // Ajoute le style au bouton actif
       $(this).addClass("active active-tag");
-    
+      // Récupération du taf (-> valeur) du bouton sur lequel on clique
       var tag = $(this).data("images-toggle");
     
-      // Filtrer les éléments de la galerie en fonction du tag
       $(".gallery-item").each(function() {
+        // Cache les images
         $(this).parents(".item-column").hide();
+        // Si la valeur du bouton => tous
         if (tag === "all") {
+          // Affiche tout
           $(this).parents(".item-column").show(300);
+          // Si c'est pas tous => récupération de la valeur du bouton (tag)
         } else if ($(this).data("gallery-tag") === tag) {
+          // Affiche le contenu correspondant
           $(this).parents(".item-column").show(300);
         }
       });
