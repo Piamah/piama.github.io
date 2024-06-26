@@ -115,11 +115,16 @@
       }
     },
     // ------------ BUG N°1 ------------ //
-
+    // openLightBox => gestion de la modale
+    // function openLightBox(element, lightboxId) {
     openLightBox(element, lightboxId) {
+      // const lightbox = document.getElementById(lightboxId)
       $(`#${lightboxId}`)
+      // const lightboxImage = lightbox.querySelector(".lightboxImage")
         .find(".lightboxImage")
+        // lightboxImage.src = element.getAttribute("src")
         .attr("src", element.attr("src"));
+        // Gère le "si ouvert, fermer" et "si fermé, ouvrir" quand on clique sur le bouton/event déclencheur
       $(`#${lightboxId}`).modal("toggle");
     },
 
